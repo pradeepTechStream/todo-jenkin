@@ -1,9 +1,9 @@
 pipeline {
     agent any
+    tools {
+        jdk 'JDK17'
+    }
     stages {
-        tools {
-            jdk 'JDK17'
-        }
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/pradeepTechStream/todo-jenkin.git'
