@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/pradeepTechStream/JenkinProject.git'
+                git branch: 'main', url: 'https://github.com/pradeepTechStream/todo-jenkin.git'
             }
         }
         stage('Build') {
