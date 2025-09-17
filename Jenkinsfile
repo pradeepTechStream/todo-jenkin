@@ -17,6 +17,14 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
+        stage('Docker Build') {
+            steps {
+                bat '''
+                echo Building Docker image...
+                docker build -t todo-app:latest .
+                '''
+            }
+        }
         stage('Test') {
             steps {
                 bat 'mvn test'
