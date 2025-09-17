@@ -17,6 +17,18 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
+                stage('SonarQube Analysis') {
+                    steps {
+                        withSonarQubeEnv('SonarQube') {
+                            bat """
+                                mvn sonar:sonar \
+                                -Dsonar.projectKey=todo-app \
+                                -Dsonar.host.url=http://localhost:9000 \
+                                -Dsonar.login=YOUR_TOKEN
+                            """
+                        }
+                    }
+                }
         stage('Docker Build') {
             steps {
                 bat '''
