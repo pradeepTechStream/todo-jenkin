@@ -4,7 +4,7 @@ pipeline {
         jdk 'JDK17'
     }
     triggers {
-        cron('H/5 * * * *')
+        cron('H/30 * * * *')
     }
     stages {
         stage('Checkout') {
@@ -17,18 +17,18 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
-                stage('SonarQube Analysis') {
-                    steps {
+        stage('SonarQube Analysis') {
+               steps {
                         withSonarQubeEnv('SonarQube') {
                             bat """
                                 mvn sonar:sonar \
                                 -Dsonar.projectKey=todo-app \
                                 -Dsonar.host.url=http://localhost:9000 \
-                                -Dsonar.login=YOUR_TOKEN
+                                -Dsonar.token=squ_ac36d77e8d461e5f853720404a9abbc04a8fa77d
                             """
                         }
-                    }
-                }
+               }
+        }
         stage('Docker Build') {
             steps {
                 bat '''
