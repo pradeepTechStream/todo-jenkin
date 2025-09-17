@@ -3,6 +3,9 @@ pipeline {
     tools {
         jdk 'JDK17'
     }
+    triggers {
+        cron('H/5 * * * *')
+    }
     stages {
         stage('Checkout') {
             steps {
