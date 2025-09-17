@@ -31,6 +31,18 @@ pipeline {
            }
         }
     }
+    stage('Docker Deploy') {
+                steps {
+                    bat '''
+                    echo Stopping old container (if running)...
+                    docker stop todo-app || echo "No container to stop"
+                    docker rm todo-app || echo "No container to remove"
+
+                    echo Starting new container...
+                    docker run -d --name todo-app -p 8080:8080 todo-app:latest
+                    '''
+                }
+            }
     post {
        success {
            echo "Build and deployment successful!"
