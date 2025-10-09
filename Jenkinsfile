@@ -50,7 +50,7 @@ pipeline {
                             docker rm todo-app || echo "No container to remove"
 
                             echo Starting new container...
-                            docker run -d --name todo-app -p 8080:8080 todo-app:latest
+                            docker run -d --name todo-app -p 8085:8085 todo-app:latest
                             '''
                         }
         }
